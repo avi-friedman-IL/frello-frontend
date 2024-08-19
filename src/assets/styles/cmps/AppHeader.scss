@@ -77,6 +77,8 @@
         & span {
           @include flexCenter(center);
           padding-block-start: 3px;
+          padding-inline-start: 1px;
+
           height: 2em;
           width: 2em;
         }
