@@ -4,6 +4,9 @@
   grid-row: 2/-1;
   grid-column: 2;
   font-size: $font-size-task-details-actions;
+  background-color: pink;
+  z-index: 15;
+  position: fixed;
 
   .checklist {
     display: grid;

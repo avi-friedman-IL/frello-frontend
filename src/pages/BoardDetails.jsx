@@ -16,6 +16,7 @@ import { BoardHeader } from "../cmps/BoardHeader";
 // import { Outlet } from "react-router-dom"
 import { BoardSideBar } from "../cmps/BoardSideBar";
 import { AppHeader } from "../cmps/AppHeader";
+import { TaskDetailsActions } from "../cmps/TaskDetailsActions";
 
 import { FastAverageColor } from "fast-average-color";
 
@@ -29,8 +30,9 @@ export function BoardDetails() {
   const [preview, setPreview] = useState({});
   const [currElToEdit, setCurrElToEdit] = useState("title");
   const [value, setValue] = useState("");
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
+  const [isTaskPrevModalOpen, setIsTaskPrevModalOpen] = useState(false);
+  const [elData, setElData] = useState("");
+  const [taskPrevModalData, setTaskPrevModalData] = useState("");
   const board = useSelector((storeState) => storeState.boardModule.board);
 
   useEffect(() => {
@@ -79,7 +81,8 @@ export function BoardDetails() {
   // }
 
   function onPreviewToShow(data) {
-    console.log(data);
+    // console.log(data);
+    setElData(data);
 
     setPreview({
       position: "absolute",
@@ -89,7 +92,16 @@ export function BoardDetails() {
       height: `${data.elData.height}px`,
       zIndex: "1000",
     });
-    setIsOpenModal((isOpenModal) => !isOpenModal);
+
+    setTaskPrevModalData({
+      position: "fixed",
+      left: `${data.elData.left + 260}px`,
+      top: `${data.elData.top}px`,
+      width: `max-content`,
+      height: `max-content`,
+      zIndex: "1000",
+    });
+    setIsTaskPrevModalOpen((isOpenModal) => !isOpenModal);
 
     setCurrElToEdit(data.dataName);
     setCurrGroup(data.group);
@@ -121,10 +133,10 @@ export function BoardDetails() {
 
     if (currElToEdit === "title") {
       onUpdated(currElToEdit, value);
-      setIsOpenModal((isOpenModal) => !isOpenModal);
+      setIsTaskPrevModalOpen((isOpenModal) => !isOpenModal);
     }
   }
-  console.log(preview);
+  // console.log(preview);
   if (!board) return;
 
   return (
@@ -135,7 +147,7 @@ export function BoardDetails() {
           backgroundImage: `url(${board?.style?.backgroundImage})`,
         }}
       >
-        {isOpenModal && (
+        {isTaskPrevModalOpen && (
           <section>
             <div
               onClick={handleSave}
@@ -155,6 +167,17 @@ export function BoardDetails() {
                 <button type="submit">save</button>
               </form>
             </div>
+            {taskPrevModalData && (
+              <TaskDetailsActions
+                data={elData}
+                boardId={boardId}
+                groupId={currGroup.id}
+                taskId={currTask.id}
+                task={currTask}
+                taskPrevModalData={taskPrevModalData}
+                setIsTaskPrevModalOpen={setIsTaskPrevModalOpen}
+              />
+            )}
           </section>
         )}
 
