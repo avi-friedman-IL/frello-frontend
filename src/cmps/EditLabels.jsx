@@ -7,7 +7,6 @@ import { updateBoard } from "../store/actions/board.actions";
 
 export function EditLables({ task, groupId, handlePopoverClick }) {
   const [selectedLabels, setSelectedLabels] = useState([]);
-  console.log(task);
   const board = useSelector((storeState) => storeState.boardModule.board);
 
   const labelsList = [
@@ -36,8 +35,6 @@ export function EditLables({ task, groupId, handlePopoverClick }) {
     });
     updateBoard(updatedBoard);
   }
-
-  console.log(selectedLabels);
 
   return (
     <div className="edit-task-modal-content" onClick={handlePopoverClick}>
