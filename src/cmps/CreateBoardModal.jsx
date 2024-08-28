@@ -78,6 +78,16 @@ export function CreateBoardModal({ handleStartBoard }) {
     setSelectedImgIdx(idx);
   }
 
+  function handleCreateBtnClick() {
+    const boardToCreate = {
+      ...newBoard,
+      backgroundImage: bgImage,
+      title: boardTitle,
+    };
+    setNewBoard(boardToCreate);
+    handleStartBoard(boardToCreate);
+  }
+
   return (
     <div className="create-board-modal">
       <ul className="img-list">
@@ -101,16 +111,7 @@ export function CreateBoardModal({ handleStartBoard }) {
         value={boardTitle}
         onChange={(e) => setBoardTitle(e.target.value)}
       />
-      <button
-        className="create-btn"
-        onClick={() =>
-          handleStartBoard({
-            ...newBoard,
-            backgroundImage: bgImage,
-            title: boardTitle,
-          })
-        }
-      >
+      <button className="create-btn" onClick={handleCreateBtnClick}>
         Create
       </button>
     </div>

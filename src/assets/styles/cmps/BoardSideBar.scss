@@ -25,7 +25,7 @@
       background-color: inherit;
     }
 
-     li:not(:first-child) {
+    li:not(:first-child) {
       display: grid;
       justify-items: center;
       align-self: center;
@@ -35,5 +35,4 @@
       background-color: gray;
     }
   }
-  
 }

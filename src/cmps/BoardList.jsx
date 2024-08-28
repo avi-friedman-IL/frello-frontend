@@ -35,7 +35,6 @@ export function BoardList({
   }
 
   function handleStartBoard(board) {
-    console.log(board);
     onAddBoard(board);
     handleClosePopover();
     navigate(`/board/${board._id}`);
