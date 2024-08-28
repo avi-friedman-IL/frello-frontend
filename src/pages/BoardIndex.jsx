@@ -44,7 +44,7 @@ export function BoardIndex() {
       ...emptyBoard,
       title: board.title,
       style: {
-        ...emptyBoard.style, // Ensure emptyBoard's style is preserved
+        ...emptyBoard.style,
         backgroundImage: board.backgroundImage,
       },
     };
