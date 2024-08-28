@@ -1,3 +1,3 @@
 export function BoardPreview({ board }) {
-  return <article className="preview"></article>;
+  return <article className="board-preview"></article>;
 }

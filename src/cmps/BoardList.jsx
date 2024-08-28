@@ -52,7 +52,10 @@ export function BoardList({
       {boards &&
         boards.length &&
         boards.map((board) => (
-          <li key={board._id}>
+          <li
+            key={board._id}
+            style={{ backgroundImage: `url(${board?.style?.backgroundImage})` }}
+          >
             <BoardPreview board={board} />
             <Link to={`/board/${board._id}`}>{board.title}</Link>
             <div className="actions">
