@@ -4,6 +4,7 @@ import { BoardPreview } from "./BoardPreview";
 import { Popover } from "@mui/material";
 import { useState } from "react";
 import { CreateBoardModal } from "./CreateBoardModal";
+import { useNavigate } from "react-router-dom";
 
 export function BoardList({
   boards,
@@ -14,6 +15,8 @@ export function BoardList({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpenByName, setModalOpenByName] = useState(null);
+
+  const navigate = useNavigate();
 
   function handleClick(ev) {
     const currDataName = ev.currentTarget.getAttribute("data-name");
@@ -34,6 +37,8 @@ export function BoardList({
   function handleStartBoard(board) {
     console.log(board);
     onAddBoard(board);
+    handleClosePopover();
+    navigate(`/board/${board._id}`);
   }
 
   function handleClosePopover() {
