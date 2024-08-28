@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { boardService } from "../services/board";
 
-export function CreateBoardModal({ handleStartBoard }) {
+export function CreateBoardModal({ handleCreateBoard }) {
   const [newBoard, setNewBoard] = useState({});
   const [bgImage, setBgImage] = useState("");
   const [boardTitle, setBoardTitle] = useState("");
@@ -85,7 +85,7 @@ export function CreateBoardModal({ handleStartBoard }) {
       title: boardTitle,
     };
     setNewBoard(boardToCreate);
-    handleStartBoard(boardToCreate);
+    handleCreateBoard(boardToCreate);
   }
 
   return (

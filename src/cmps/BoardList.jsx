@@ -16,8 +16,6 @@ export function BoardList({
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpenByName, setModalOpenByName] = useState(null);
 
-  const navigate = useNavigate();
-
   function handleClick(ev) {
     const currDataName = ev.currentTarget.getAttribute("data-name");
 
@@ -34,10 +32,10 @@ export function BoardList({
     return board.owner?._id === user._id;
   }
 
-  function handleStartBoard(board) {
+  function handleCreateBoard(board) {
+    console.log(board);
     onAddBoard(board);
     handleClosePopover();
-    navigate(`/board/${board._id}`);
   }
 
   function handleClosePopover() {
@@ -83,7 +81,7 @@ export function BoardList({
           }}
           disablePortal
         >
-          <CreateBoardModal handleStartBoard={handleStartBoard} />
+          <CreateBoardModal handleCreateBoard={handleCreateBoard} />
         </Popover>
       )}
     </ul>
