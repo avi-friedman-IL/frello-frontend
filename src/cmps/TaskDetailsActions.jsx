@@ -28,13 +28,11 @@ export function TaskDetailsActions({
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [modalOpenByName, setModalOpenByName] = useState(null);
-  const [dataN, setDataN] = useState("");
 
   const { taskId: taskParams } = useParams();
 
   function handleClick(ev) {
     const currDataName = ev.currentTarget.getAttribute("data-name");
-    setDataN(currDataName);
     setIsPopoverOpen((isOpen) => !isOpen);
     setAnchorEl(ev.currentTarget);
     setModalOpenByName(currDataName);
@@ -46,46 +44,46 @@ export function TaskDetailsActions({
 
   return (
     <section className="actions" style={{ ...taskPrevActionsModalData }}>
-      {/* {dataN !== title && ( */}
-      <button
-        data-name="checklists"
-        className="checklist action-btn"
-        aria-describedby="1"
-        onClick={handleClick}
-      >
-        <span className="icon">
-          <IoMdCheckboxOutline />
-        </span>
-        <p>Checklist</p>
+      {taskParams && (
+        <button
+          data-name="checklists"
+          className="checklist action-btn"
+          aria-describedby="1"
+          onClick={handleClick}
+        >
+          <span className="icon">
+            <IoMdCheckboxOutline />
+          </span>
+          <p>Checklist</p>
 
-        {modalOpenByName === "checklists" && (
-          <Popover
-            id={anchorEl}
-            open={isPopoverOpen}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            disablePortal
-            // disableEnforceFocus
-            // disableAutoFocus
-          >
-            {/* <Typography sx={{ p: 2 }} onClick={handlePopoverClick}></Typography> */}
+          {modalOpenByName === "checklists" && (
+            <Popover
+              id={anchorEl}
+              open={isPopoverOpen}
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              disablePortal
+              // disableEnforceFocus
+              // disableAutoFocus
+            >
+              {/* <Typography sx={{ p: 2 }} onClick={handlePopoverClick}></Typography> */}
 
-            <EditChecklist
-              groupId={groupId}
-              taskId={taskId}
-              task={task}
-              onUpdated={onUpdated}
-              setIsPopoverOpen={setIsPopoverOpen}
-              handlePopoverClick={handlePopoverClick}
-              setNewCheckLists={setNewCheckLists}
-            />
-          </Popover>
-        )}
-      </button>
-      {/* )} */}
+              <EditChecklist
+                groupId={groupId}
+                taskId={taskId}
+                task={task}
+                onUpdated={onUpdated}
+                setIsPopoverOpen={setIsPopoverOpen}
+                handlePopoverClick={handlePopoverClick}
+                setNewCheckLists={setNewCheckLists}
+              />
+            </Popover>
+          )}
+        </button>
+      )}
 
       <button
         data-name="due-date"
