@@ -75,7 +75,7 @@ export function AppHeader({
   }
 
   function handleCreateBoard(board) {
-    console.log(board);
+    // console.log(board);
     onAddBoard(board);
     handleClosePopover();
   }

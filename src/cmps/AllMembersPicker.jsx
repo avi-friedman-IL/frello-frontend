@@ -14,7 +14,7 @@ export function AllMembersPicker({
   function handleAddUserToBoard(ev, user) {
     ev.stopPropagation();
     const membersToUpdate = [...members, user];
-    console.log(membersToUpdate);
+    // console.log(membersToUpdate);
     setNewBoardMembers(membersToUpdate);
     onUpdated("members", membersToUpdate);
   }

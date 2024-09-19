@@ -16,7 +16,6 @@ import { CoverDisplay } from "./CoverDisplay";
 import { FaRegCreditCard } from "react-icons/fa";
 import { VscListFlat } from "react-icons/vsc";
 
-
 export function TaskDetails() {
   const dialogRef = useRef(null);
   const params = useParams();
@@ -39,8 +38,6 @@ export function TaskDetails() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [modalOpenByName, setModalOpenByName] = useState(null);
-
-
 
   useEffect(() => {
     if (task) {
@@ -94,7 +91,7 @@ export function TaskDetails() {
       if (name === "members") {
         setTaskMembers([...value]);
       }
-      console.log("updatedBoard", updatedBoard);
+      // console.log("updatedBoard", updatedBoard);
       await updateBoard(updatedBoard);
     } catch (error) {
       console.error("Failed to update the board:", error);
@@ -147,7 +144,7 @@ export function TaskDetails() {
 
   function handleAddLabel(ev) {
     ev.preventDefault();
-    console.log("Label added:", ev);
+    // console.log("Label added:", ev);
     handleClick(ev);
   }
   if (!task) return;

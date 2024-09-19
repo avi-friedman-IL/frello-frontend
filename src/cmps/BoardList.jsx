@@ -59,7 +59,7 @@ export function BoardList({
   }
 
   function handleCreateBoard(board) {
-    console.log(board);
+    // console.log(board);
     onAddBoard(board);
     handleClosePopover();
   }

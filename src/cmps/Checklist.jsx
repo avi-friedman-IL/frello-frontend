@@ -15,7 +15,6 @@ export function Checklist({
   onCloseItem,
   onUpdated,
   checklists,
-
 }) {
   return (
     <div className="task-checklist">
@@ -39,7 +38,7 @@ export function Checklist({
               checklist={checklist}
               onUpdated={onUpdated}
               checklists={checklists}
-             
+              handleChecklistItem={handleChecklistItem}
             />
           ))}
       </ul>

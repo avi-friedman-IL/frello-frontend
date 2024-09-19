@@ -72,7 +72,7 @@ export function CopyBoard({
         ...board.style,
       },
     };
-    console.log(board.title);
+    // console.log(board.title);
     try {
       boardService.updateActivities(
         boardToSave,
@@ -93,7 +93,7 @@ export function CopyBoard({
         "addBoard"
       );
       const savedBoard = await addBoard(boardToSave);
-      console.log(savedBoard);
+      // console.log(savedBoard);
       navigate(`/board/${savedBoard._id}`);
       setIsPopoverOpen(false);
       setIsMenuOpen(false);

@@ -11,7 +11,6 @@ export function DueDatePicker({
   setIsPopoverOpen,
   handlePopoverClick,
   setNewDueDate,
-
 }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedRange, setSelectedRange] = useState({ from: null, to: null });
@@ -152,7 +151,7 @@ export function DueDatePicker({
       actions[name]();
     }
     setNewDueDate(dueDate);
-    console.log(dueDate);
+    // console.log(dueDate);
 
     if (dueDate.date) {
       boardService.updateActivities(
@@ -219,4 +218,3 @@ export function DueDatePicker({
     </div>
   );
 }
-

@@ -87,12 +87,10 @@ export function BoardDetails() {
 
   const currUser = userService.getLoggedinUser();
 
-
-
   // Join the board room via socket and listen for group updates
   useEffect(() => {
-    if(!currUser) return
-    socketService.emit("joinBoard", {boardId,currUser});
+    if (!currUser) return;
+    socketService.emit("joinBoard", { boardId, currUser });
     console.log("Joining board room:", boardId);
 
     socketService.on(SOCKET_EVENT_GROUPS_UPDATED, (updatedGroups) => {
@@ -171,7 +169,7 @@ export function BoardDetails() {
 
   // Function to handle board updates
   async function onUpdated(name, value) {
-    console.log(name, value);
+    // console.log(name, value);
     if (!board) return;
 
     try {
@@ -240,7 +238,7 @@ export function BoardDetails() {
 
   // Function to handle task preview display when a task is selected
   function onPreviewToShow(data) {
-    console.log(data.task?.cover?.color);
+    // console.log(data.task?.cover?.color);
     setPreview({
       position: "absolute",
       left: `${data.elData.left}px`,
@@ -319,7 +317,7 @@ export function BoardDetails() {
 
   // Return early if there is no board or no board style
   if (!board || !board.style) return;
-  
+
   return (
     <section
       className="board-details"

@@ -187,16 +187,16 @@ async function updateActivities(
   );
 
 
-  // const updatedActivities = [activityToAdd, ...(board?.activities || [])];
+  const updatedActivities = [activityToAdd, ...(board?.activities || [])];
+  // return updatedActivities
+  board[key] = value;
 
-  // const updatedBoard = {
-  //   ...board,
-  //   activities: updatedActivities
-  // };
-
+  return board
+  // return updatedBoard
   // return updateCurrBoard(updatedBoard);
 
-  await board.activities.unshift(activityToAdd);
+  // await board.activities.unshift(activityToAdd);
+
 }
 
 function addActivity(

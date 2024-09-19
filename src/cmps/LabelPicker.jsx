@@ -39,7 +39,7 @@ export function LabelPicker({
   }
 
   useEffect(() => {
-    console.log(localTaskSelectedLabels);
+    // console.log(localTaskSelectedLabels);
     onUpdated("labels", localTaskSelectedLabels);
   }, [localTaskSelectedLabels]);
 
@@ -124,7 +124,9 @@ export function LabelPicker({
                     className="label-color"
                     style={{
                       backgroundColor: label.color,
-                        color: boardService.isColorDark(label.color) ? "#fff" : "#000"
+                      color: boardService.isColorDark(label.color)
+                        ? "#fff"
+                        : "#000",
                     }}
                   >
                     <p className="chosen-label-title">{label.title}</p>

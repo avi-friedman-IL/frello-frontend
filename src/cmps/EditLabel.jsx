@@ -17,10 +17,10 @@ export function EditLabel({
   const staticLabels = boardService.getAllLabels();
   const [deleteLabel, setDeleteLabel] = useState(false);
 
-  console.log(labelToEdit);
+  // console.log(labelToEdit);
 
   useEffect(() => {
-    setLabelToEdit(label );
+    setLabelToEdit(label);
   }, [label]);
 
   function handelInputChange({ target }) {
@@ -56,9 +56,8 @@ export function EditLabel({
   return (
     <>
       {deleteLabel ? (
- 
         <section className="label-delete-container">
-              <h5>Delete lable</h5>
+          <h5>Delete lable</h5>
           <p>This will remove this label from all cards.There is no undo.</p>
           <button
             className="confirm-delete-btn"
@@ -88,7 +87,12 @@ export function EditLabel({
 
           <div
             className="label-preview"
-            style={{ backgroundColor: labelToEdit.color || "#f0f0f0",  color: boardService.isColorDark( labelToEdit.color) ? "#fff" : "#000"}}
+            style={{
+              backgroundColor: labelToEdit.color || "#f0f0f0",
+              color: boardService.isColorDark(labelToEdit.color)
+                ? "#fff"
+                : "#000",
+            }}
           >
             {labelToEdit.title}
           </div>

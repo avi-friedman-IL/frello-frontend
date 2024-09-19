@@ -22,9 +22,9 @@ export function DemoGroups() {
   }
 
   async function onUpdated(name, value) {
-    console.log(value);
+    // console.log(value);
     try {
-    const updatedBoard= await boardService.updateBoard(board, null, null, {
+      const updatedBoard = await boardService.updateBoard(board, null, null, {
         key: name,
         value: value,
       });

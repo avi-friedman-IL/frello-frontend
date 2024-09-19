@@ -36,7 +36,7 @@ export function GroupPreview({
         key: "deleteGroup",
         value: null,
       });
-      console.log(newBoard);
+      // console.log(newBoard);
       await updateBoard(newBoard);
       await boardService.updateActivities(board, "", "deleteGroup", group);
     } catch (error) {

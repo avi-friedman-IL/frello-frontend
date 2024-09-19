@@ -9,7 +9,7 @@ export function MemberPicker({
   taskMembers,
 }) {
   const membersBoard = board.members;
-  console.log(membersBoard);
+  // console.log(membersBoard);
   const availableMembers = membersBoard.filter(
     (boardMember) =>
       !taskMembers.some((taskMember) => taskMember._id === boardMember._id)
@@ -28,7 +28,7 @@ export function MemberPicker({
 
   function handleAddMember(ev, member) {
     ev.stopPropagation();
-    console.log(member);
+    // console.log(member);
     const updateBoardMembers = selectedMembers.filter(
       (m) => m._id !== member._id
     );
@@ -39,7 +39,7 @@ export function MemberPicker({
     setTaskMembers(updateTaskMembers);
   }
 
-  console.log(taskMembers);
+  // console.log(taskMembers);
   return (
     <div className="members-container">
       <h5 className="members-title">Members</h5>

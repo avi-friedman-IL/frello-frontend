@@ -59,7 +59,7 @@ export function BoardIndex() {
         backgroundImage: board.backgroundImage,
       },
     };
-    console.log(boardToSave);
+    // console.log(boardToSave);
     try {
       boardService.updateActivities(
         boardToSave,
@@ -72,7 +72,7 @@ export function BoardIndex() {
         "addBoard"
       );
       const savedBoard = await addBoard(boardToSave);
-      console.log(savedBoard);
+      // console.log(savedBoard);
       showSuccessMsg(`Board added (id: ${savedBoard._id})`);
 
       // navigate(`/board/${savedBoard._id}`);
@@ -95,7 +95,7 @@ export function BoardIndex() {
   }
 
   function handleCreateBoard(board) {
-    console.log(board);
+    // console.log(board);
     onAddBoard(board);
     handleClosePopover();
   }
@@ -107,7 +107,7 @@ export function BoardIndex() {
   }
 
   if (!boards || !boards.length) return;
-  console.log(import.meta.env.VITE_SERVER);
+  // console.log(import.meta.env.VITE_SERVER);
   return (
     <>
       <AppHeader

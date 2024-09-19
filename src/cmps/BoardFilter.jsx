@@ -13,9 +13,9 @@ export function BoardFilter() {
   const labels = useSelector((store) => store.boardModule.board.labels);
   const { members } = useSelector((store) => store.boardModule.board);
   const { groups } = useSelector((store) => store.boardModule.board);
-  console.log("groups:", groups);
+  // console.log("groups:", groups);
 
-  console.log("members:", members);
+  // console.log("members:", members);
   useEffect(() => {
     filterBoard(filterToEdit);
     setFilterToEdit(filterToEdit);
@@ -83,7 +83,7 @@ export function BoardFilter() {
       });
     }
   }
-  console.log("labels:", labels);
+  // console.log("labels:", labels);
   const countMembers = filterToEdit.selectMember.length || 0;
   return (
     <section className="board-filter" onClick={handlePopoverClick}>

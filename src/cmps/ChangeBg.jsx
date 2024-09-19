@@ -136,7 +136,7 @@ export function ChangeBg({
         ...board,
         style: { backgroundImage: bgType },
       };
-      console.log(boardToUpdate.style);
+      // console.log(boardToUpdate.style);
       onUpdated("style", boardToUpdate.style);
       setCurrBoardBgStyle(boardToUpdate.style);
     } else if (type === "bgColor") {
@@ -147,7 +147,7 @@ export function ChangeBg({
           darkenedColor: chroma(bgType).darken(1.5).hex(),
         },
       };
-      console.log(boardToUpdate.style);
+      // console.log(boardToUpdate.style);
 
       onUpdated("style", boardToUpdate.style);
       setCurrBoardBgStyle(boardToUpdate.style);

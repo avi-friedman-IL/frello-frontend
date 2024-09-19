@@ -34,7 +34,7 @@ export function Activities({ board, setIsActivitiesOpen, setIsMenuOpen }) {
 
     return formattedTime ? `${formattedDate}, ${formattedTime}` : formattedDate;
   }
-  console.log(board.activities);
+  // console.log(board.activities);
   return (
     <section className="activities-container">
       <header className="activity-header">

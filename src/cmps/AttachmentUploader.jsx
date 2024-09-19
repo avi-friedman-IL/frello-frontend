@@ -14,36 +14,38 @@ export function AttachmentUploader({
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
-      'image/jpeg': [],
-      'image/png': [],
-      'application/pdf': []
+      "image/jpeg": [],
+      "image/png": [],
+      "application/pdf": [],
     },
     onDrop: (acceptedFiles) => {
-      console.log(acceptedFiles);
+      // console.log(acceptedFiles);
 
-      const formattedFiles = acceptedFiles.map((file) => {
-        try {
-          const newFile = {
-            ...addFile,
-            name: file.name,
-            url: URL.createObjectURL(file),
-            type: file.type,
-          };
-          return newFile;
-        } catch (error) {
-          console.error("Error creating object URL:", error);
-          return null;
-        }
-      }).filter(file => file !== null); 
+      const formattedFiles = acceptedFiles
+        .map((file) => {
+          try {
+            const newFile = {
+              ...addFile,
+              name: file.name,
+              url: URL.createObjectURL(file),
+              type: file.type,
+            };
+            return newFile;
+          } catch (error) {
+            console.error("Error creating object URL:", error);
+            return null;
+          }
+        })
+        .filter((file) => file !== null);
 
       const updatedFiles = [...newFiles, ...formattedFiles];
-      console.log(updatedFiles);
+      // console.log(updatedFiles);
       setNewFiles(updatedFiles);
       onUpdated("attachments", updatedFiles);
     },
     onDropRejected: (fileRejections) => {
       console.error("Rejected files: ", fileRejections);
-    }
+    },
   });
 
   return (
@@ -61,7 +63,6 @@ export function AttachmentUploader({
 // import { boardService } from "../services/board";
 // import { useState } from "react";
 
-
 // export function AttachmentUploader({
 //   onUpdated = () => {},
 //   setIsPopoverOpen,
@@ -70,18 +71,16 @@ export function AttachmentUploader({
 //   setNewFiles,
 //   newFiles,
 // }) {
-//   const [addFile, setAddFile] = useState(boardService.getEmptyAttach()) 
-  
+//   const [addFile, setAddFile] = useState(boardService.getEmptyAttach())
 
 //   const { getRootProps, getInputProps } = useDropzone({
 //     accept: "image/jpeg, image/png, application/pdf",
 //     onDrop: (acceptedFiles) => {
 //       console.log(acceptedFiles);
 
-
 //       const formattedFiles = acceptedFiles.map((file) => {
 //         const newFile = {
-//           ...addFile, 
+//           ...addFile,
 //           name: file.name,
 //           url: URL.createObjectURL(file),
 //           type: file.type,

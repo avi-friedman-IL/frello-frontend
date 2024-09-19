@@ -5,6 +5,7 @@ import { boardReducer } from "../store/reducers/board.reducer";
 import { boardService } from "../services/board";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
+import { loadBoard, updateBoard } from "../store/actions/board.actions";
 
 export function TaskChecklist({
   checklists,
@@ -13,7 +14,7 @@ export function TaskChecklist({
   group,
   board,
 }) {
-  console.log("checklists from TaskChecklist", checklists);
+  // console.log("checklists from TaskChecklist", checklists);
 
   const [updatedChecklists, setUpdatedChecklists] = useState([...checklists]);
   const [isAddingItem, setIsAddingItem] = useState(false);
@@ -66,7 +67,7 @@ export function TaskChecklist({
     const updatedItem = updatedItems.find(
       (currItem) => currItem.id === item.id
     );
-    boardService.updateActivities(
+    const updatedBoard = await boardService.updateActivities(
       board,
       "",
       "completeChecklistItem",
@@ -76,6 +77,8 @@ export function TaskChecklist({
       "",
       updatedItem
     );
+
+    await updateBoard(updatedBoard);
 
     const updatedChecklist = { ...checklistToUpdate, items: updatedItems };
 
@@ -148,7 +151,7 @@ export function TaskChecklist({
         if (currItem.id === item.id) {
           // item.edit = false;
           setTextItemToEdit(ev.target.value);
-          console.log("textItemToEdit:", textItemToEdit, newText);
+          // console.log("textItemToEdit:", textItemToEdit, newText);
           return { ...currItem, text: newText };
         }
         return currItem;

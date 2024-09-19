@@ -45,7 +45,7 @@ export function DueDateDisplay({ dueDate, setNewDueDate, onUpdated }) {
 
   function handleCompleteChange() {
     const newIsChecked = !isChecked;
-    console.log(newIsChecked);
+    // console.log(newIsChecked);
     setIsChecked(newIsChecked);
 
     const updatedDueDate = { ...dueDate, isComplete: newIsChecked };

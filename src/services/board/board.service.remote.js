@@ -74,7 +74,7 @@ async function updateBoard(
     activity = ''
 ) {
 
-    console.log(board, groupId, taskId, { key, value })
+    // console.log(board, groupId, taskId, { key, value })
 
     const gIdx = board?.groups?.findIndex(group => group.id === groupId)
     const tIdx = board?.groups[gIdx]?.tasks.findIndex(
@@ -137,20 +137,20 @@ async function updateActivities(
         copiedBoard
     )
 
-    // const updatedActivities = [activityToAdd, ...(board?.activities || [])];
+    const updatedActivities = [activityToAdd, ...(board?.activities || [])];
 
-    // const updatedBoard = {
-    //     ...board,
-    //     activities: updatedActivities
-    // };
+    const updatedBoard = {
+        ...board,
+        activities: updatedActivities
+    };
 
-    // return updateCurrBoard(updatedBoard);
+    return updatedBoard
 
     // Return or save this updatedBoard
     // await save(updatedBoard)
 
-    await board?.activities?.unshift(activityToAdd)
-    console.log(board)
+    // await board?.activities?.unshift(activityToAdd)
+    // console.log(board)
     // await board.activities.unshift(activityToAdd)
 }
 
