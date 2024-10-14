@@ -19,209 +19,218 @@ import { AllMembersPicker } from './AllMembersPicker'
 import { RiUserAddLine } from 'react-icons/ri'
 
 export function BoardHeader({
-  members,
-  bgColor,
-  allowDrop,
-  drag,
-  setIsMenuOpen,
-  isMenuOpen,
-  setNewBoardMembers,
+   members,
+   bgColor,
+   allowDrop,
+   drag,
+   setIsMenuOpen,
+   isMenuOpen,
+   setNewBoardMembers,
 }) {
-  const board = useSelector(storeState => storeState.boardModule.board)
-  const users = useSelector(storeState => storeState.userModule.users)
-  
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const [isClearFilter, setIsClearFilter] = useState(false)
-  const [modalOpenByName, setModalOpenByName] = useState(null)
+   const board = useSelector(storeState => storeState.boardModule.board)
+   const users = useSelector(storeState => storeState.userModule.users)
 
-  function handleFilterClick(ev) {
-    const currDataName = ev.currentTarget.getAttribute('data-name')
-    setIsClearFilter(true)
-    setAnchorEl(ev.currentTarget)
-    setModalOpenByName(currDataName)
-    setIsPopoverOpen(isOpen => !isOpen)
-  }
+   const [anchorEl, setAnchorEl] = useState(null)
+   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+   const [isHovered, setIsHovered] = useState(false)
+   const [isClearFilter, setIsClearFilter] = useState(false)
+   const [modalOpenByName, setModalOpenByName] = useState(null)
 
-  function handleClick(ev) {
-    ev.stopPropagation()
-    const currDataName = ev.currentTarget.getAttribute('data-name')
-    setIsPopoverOpen(isPopoverOpen => !isPopoverOpen)
-    setAnchorEl(ev.currentTarget)
-    setModalOpenByName(currDataName)
-    console.log(currDataName)
-  }
+   function handleFilterClick(ev) {
+      const currDataName = ev.currentTarget.getAttribute('data-name')
+      setIsClearFilter(true)
+      setAnchorEl(ev.currentTarget)
+      setModalOpenByName(currDataName)
+      setIsPopoverOpen(isOpen => !isOpen)
+   }
 
-  function handleMenuBtnClick() {
-    setIsMenuOpen(true)
-  }
+   function handleClick(ev) {
+      ev.stopPropagation()
+      const currDataName = ev.currentTarget.getAttribute('data-name')
+      setIsPopoverOpen(isPopoverOpen => !isPopoverOpen)
+      setAnchorEl(ev.currentTarget)
+      setModalOpenByName(currDataName)
+      console.log(currDataName)
+   }
 
-  function clearFilter(ev) {
-    ev.stopPropagation()
-    setIsClearFilter(false)
-    filterBoard(boardService.getDefaultFilter())
-  }
+   function handleMenuBtnClick() {
+      setIsMenuOpen(true)
+   }
 
-  async function onUpdated(name, value) {
-    if (!board) return
-    try {
-      const updatedBoard = await boardService.updateBoard(board, null, null, {
-        key: name,
-        value: value,
-      })
-      await updateBoard(updatedBoard)
-    } catch (error) {
-      console.error('Failed to update the board:', error)
-    }
-  }
+   function clearFilter(ev) {
+      ev.stopPropagation()
+      setIsClearFilter(false)
+      filterBoard(boardService.getDefaultFilter())
+   }
 
-  function setStarred() {
-    if (board.isStarred) return false
-    else return true
-  }
+   async function onUpdated(name, value) {
+      if (!board) return
+      try {
+         const updatedBoard = await boardService.updateBoard(board, null, null, {
+            key: name,
+            value: value,
+         })
+         await updateBoard(updatedBoard)
+      } catch (error) {
+         console.error('Failed to update the board:', error)
+      }
+   }
 
-  function handleIsStarred(ev) {
-    ev.stopPropagation()
-    ev.preventDefault()
-    setStarred()
-    onUpdated('isStarred', setStarred())
-  }
+   function setStarred() {
+      if (board.isStarred) return false
+      else return true
+   }
 
-  return (
-    <section
-      className='board-header'
-      style={{
-        gridColumn: isMenuOpen ? '2/3' : '2/-1',
-        columnGap: isMenuOpen ? '1em' : '',
-      }}>
-      <div className='board-header-title'>{board?.title}</div>
-      <div
-        className='starred'
-        onClick={ev => handleIsStarred(ev)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}>
-        {!board.isStarred || isHovered ? <FaRegStar /> : <FaStar />}
-      </div>
+   function handleIsStarred(ev) {
+      ev.stopPropagation()
+      ev.preventDefault()
+      setStarred()
+      onUpdated('isStarred', setStarred())
+   }
 
-      <div
-        role='button'
-        data-name='members'
-        className='members all-members-btn'
-        aria-describedby='30'
-        onClick={handleClick}
-        style={{
-          placeSelf: 'center',
-          backgroundColor: '#fff',
-          gridColumn: isMenuOpen ? '5' : '4',
-        }}>
-        <RiUserAddLine />
-        <span>Share</span>
+   return (
+      <section
+         className='board-header'
+         style={{
+            gridColumn: isMenuOpen ? '2/3' : '2/-1',
+            columnGap: isMenuOpen ? '1em' : '',
+         }}>
+         <div className='board-header-title'>{board?.title}</div>
+         <div
+            className='starred'
+            onClick={ev => handleIsStarred(ev)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
+            {!board.isStarred || isHovered ? <FaRegStar /> : <FaStar />}
+         </div>
 
-        {modalOpenByName === 'members' && isPopoverOpen && (
-          <Popover
-            id={isPopoverOpen ? 'members-popover' : undefined}
-            open={isPopoverOpen}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            PaperProps={{
-              sx: {
-                width: '304px',
-                padding: '20px',
-              },
-            }}>
-            <AllMembersPicker
-              setNewBoardMembers={setNewBoardMembers}
-              members={members}
-              users={users}
-              onUpdated={onUpdated}
-            />
-          </Popover>
-        )}
-      </div>
-
-      <div
-        className='filter'
-        data-name='filter'
-        onClick={handleFilterClick}
-        style={{
-          padding: '6px 12px',
-          backgroundColor: isClearFilter ? '#f4f5f7' : 'transparent',
-          color: isClearFilter ? '#172b4d' : '#fff',
-          borderRadius: '3px',
-          gridColumn: '2',
-        }}>
-        <p>
-          <span>
-            <MdOutlineFilterList />
-          </span>
-          <span>Filters</span>
-          {modalOpenByName === 'filter' && isPopoverOpen && (
-            <Popover
-              id={anchorEl}
-              open={isPopoverOpen}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}>
-              <BoardFilter />
-            </Popover>
-          )}
-        </p>
-        {isClearFilter && (
-          <button
-            className='btn-clear'
+         <div
+            role='button'
+            data-name='members'
+            className='members all-members-btn'
+            aria-describedby='30'
+            onClick={handleClick}
             style={{
-              color: '#172b4d',
-            }}
-            onClick={clearFilter}>
-            Clear all
-          </button>
-        )}
-      </div>
-      {members && (
-        <ul
-          className='members'
-          onDragOver={ev => allowDrop(ev)}
-          style={{
-            gridColumn: isMenuOpen ? '4' : '3',
-            gridTemplateColumns: `repeat(${members.length}, 26px)`,
-            placeSelf: 'center end',
-          }}>
-          {members.map((member, idx) => (
-            <li
-              key={member?._id}
-              id={member?._id}
-              className='member'
-              draggable={true}
-              onDragStart={ev => drag(ev)}
-              style={{
-                gridColumn: `${idx + 1}`,
-                marginLeft: idx * -0.1 + 'px',
-                zIndex: members?.length - idx,
-                borderRadius: '50%',
-                backgroundImage: member?.imgUrl ? `url(${member?.imgUrl})` : 'none',
-                backgroundColor: !member?.imgUrl ? member?.color : 'transparent',
-                backgroundSize: 'cover',
-              }}></li>
-          ))}
-        </ul>
-      )}
+               placeSelf: 'center',
+               backgroundColor: '#fff',
+               gridColumn: isMenuOpen ? '5' : '4',
+            }}>
+            <RiUserAddLine />
+            <span>Share</span>
 
-      {!isMenuOpen && (
-        <div
-          className='activity-menu'
-          data-name='activities'
-          onClick={handleMenuBtnClick}>
-          <span>
-            <TbDots />
-          </span>
-        </div>
-      )}
-    </section>
-  )
+            {modalOpenByName === 'members' && isPopoverOpen && (
+               <Popover
+                  id={isPopoverOpen ? 'members-popover' : undefined}
+                  open={isPopoverOpen}
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                     vertical: 'bottom',
+                     horizontal: 'left',
+                  }}
+                  PaperProps={{
+                     sx: {
+                        width: '304px',
+                        padding: '20px',
+                     },
+                  }}>
+                  <AllMembersPicker
+                     setNewBoardMembers={setNewBoardMembers}
+                     members={members}
+                     users={users}
+                     onUpdated={onUpdated}
+                  />
+               </Popover>
+            )}
+         </div>
+
+         <div
+            className='filter'
+            data-name='filter'
+            onClick={handleFilterClick}
+            style={{
+               padding: '6px 12px',
+               backgroundColor: isClearFilter ? '#f4f5f7' : 'transparent',
+               color: isClearFilter ? '#172b4d' : '#fff',
+               borderRadius: '3px',
+               gridColumn: '2',
+            }}>
+            
+            <p>
+               <span>
+                  <MdOutlineFilterList />
+               </span>
+               <span>Filters</span>
+               {modalOpenByName === 'filter' && isPopoverOpen && (
+                  <Popover
+                     id={anchorEl}
+                     open={isPopoverOpen}
+                     anchorEl={anchorEl}
+                     anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                     }}>
+                     <BoardFilter />
+                  </Popover>
+               )}
+            </p>
+            
+            {isClearFilter && (
+               <button
+                  className='btn-clear'
+                  style={{
+                     color: '#172b4d',
+                  }}
+                  onClick={clearFilter}>
+                  Clear all
+               </button>
+            )}
+         </div>
+         
+         {members && members.length > 0 && (
+            <ul
+               className='members'
+               onDragOver={ev => allowDrop(ev)}
+               style={{
+                  gridColumn: isMenuOpen ? '4' : '3',
+                  gridTemplateColumns: `repeat(${members?.length}, 26px)`,
+                  placeSelf: 'center end',
+               }}>
+               {members &&
+                  members.length > 0 &&
+                  members.map((member, idx) => (
+                     <li
+                        key={member?._id || idx}
+                        id={member?._id}
+                        className='member'
+                        draggable={true}
+                        onDragStart={ev => drag(ev)}
+                        style={{
+                           gridColumn: `${idx + 1}`,
+                           marginLeft: idx * -0.1 + 'px',
+                           zIndex: members?.length - idx,
+                           borderRadius: '50%',
+                           backgroundImage: member?.imgUrl
+                              ? `url(${member?.imgUrl})`
+                              : 'none',
+                           backgroundColor: !member?.imgUrl
+                              ? member?.color
+                              : 'transparent',
+                           backgroundSize: 'cover',
+                        }}></li>
+                  ))}
+            </ul>
+         )}
+
+         {!isMenuOpen && (
+            <div
+               className='activity-menu'
+               data-name='activities'
+               onClick={handleMenuBtnClick}>
+               <span>
+                  <TbDots />
+               </span>
+            </div>
+         )}
+      </section>
+   )
 }
