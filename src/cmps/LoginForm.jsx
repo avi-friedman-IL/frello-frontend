@@ -30,7 +30,7 @@ export function LoginForm({ setIsLogin, onLogin, isSignup }) {
         setIsLogin(false)
         navigate('/board')
         showSuccessMsg('Logged in successfully')
-        filterBoards({ byMemberId: res._id })
+        // filterBoards({ createdBy: res._id })
       } else {
         showErrorMsg('Login failed')
       }
