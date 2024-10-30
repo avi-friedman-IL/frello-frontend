@@ -39,7 +39,6 @@ export function LabelPicker({
   }
 
   useEffect(() => {
-    console.log(localTaskSelectedLabels);
     onUpdated("labels", localTaskSelectedLabels);
   }, [localTaskSelectedLabels]);
 

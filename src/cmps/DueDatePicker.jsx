@@ -152,7 +152,6 @@ export function DueDatePicker({
       actions[name]();
     }
     setNewDueDate(dueDate);
-    console.log(dueDate);
 
     if (dueDate.date) {
       boardService.updateActivities(

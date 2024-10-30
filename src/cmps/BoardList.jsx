@@ -16,7 +16,6 @@ export function BoardList({
   onRemoveBoard,
   // onUpdateBoard,
 }) {
-  // console.log(boards);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalOpenByName, setModalOpenByName] = useState(null);
@@ -59,7 +58,6 @@ export function BoardList({
   }
 
   function handleCreateBoard(board) {
-    console.log(board);
     onAddBoard(board);
     handleClosePopover();
   }

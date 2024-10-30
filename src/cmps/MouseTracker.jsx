@@ -18,7 +18,6 @@ export function MouseTracker({ boardId }) {
     socketService.on(SOCKET_EVENT_USER_LEFT, handleUserLeft);
 
     return () => {
-      console.log("Preparing to leave board", boardId);
       socketService.emit("leaveBoard", boardId);
       socketService.off(SOCKET_EVENT_MOUSE_MOVE);
       socketService.off(SOCKET_EVENT_USER_LEFT, handleUserLeft);
@@ -46,7 +45,6 @@ export function MouseTracker({ boardId }) {
 
   function handleUserLeft(user) {
     const userId = user.id;
-    console.log(userId);
     setOtherCursors((prevCursors) => {
       const updatedCursors = { ...prevCursors };
 

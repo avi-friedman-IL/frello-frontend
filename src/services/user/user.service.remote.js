@@ -40,7 +40,6 @@ async function update({ _id, score }) {
 
 async function googleLogin(credential) {
     const user = await httpService.post('auth/google', { token: credential })
-    if (user) console.log('user:', user)
     if (user) return saveLoggedinUser(user)
 }
 

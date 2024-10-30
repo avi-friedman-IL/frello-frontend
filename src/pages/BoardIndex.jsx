@@ -59,7 +59,6 @@ export function BoardIndex() {
          boardService.updateActivities(boardToSave, 'created this board', 'createBoard')
          boardService.updateActivities(boardToSave, 'added this board to', 'addBoard')
          const savedBoard = await addBoard(boardToSave)
-         console.log(savedBoard)
          showSuccessMsg(`Board added (id: ${savedBoard._id})`)
       } catch (err) {
          showErrorMsg('Cannot add board')

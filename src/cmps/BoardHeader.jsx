@@ -50,7 +50,6 @@ export function BoardHeader({
       setIsPopoverOpen(isPopoverOpen => !isPopoverOpen)
       setAnchorEl(ev.currentTarget)
       setModalOpenByName(currDataName)
-      console.log(currDataName)
    }
 
    function handleMenuBtnClick() {

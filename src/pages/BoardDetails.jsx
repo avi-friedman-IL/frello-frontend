@@ -260,7 +260,6 @@ export function BoardDetails() {
 
   // Function to handle task preview display when a task is selected
   function onPreviewToShow(data) {
-    console.log(data.task?.cover?.color);
     setPreview({
       position: "absolute",
       left: `${data.elData.left}px`,

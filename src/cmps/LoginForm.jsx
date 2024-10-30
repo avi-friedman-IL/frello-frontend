@@ -22,7 +22,6 @@ export function LoginForm({ setIsLogin, onLogin, isSignup }) {
 
    async function onSuccess(response) {
       const { credential } = response
-      console.log('credentials:', credentials)
       try {
          const res = await googleLogin(credential)
          if (res) {

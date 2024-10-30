@@ -37,7 +37,6 @@ export function AttachmentUploader({
       }).filter(file => file !== null); 
 
       const updatedFiles = [...newFiles, ...formattedFiles];
-      console.log(updatedFiles);
       setNewFiles(updatedFiles);
       onUpdated("attachments", updatedFiles);
     },

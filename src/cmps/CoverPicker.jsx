@@ -27,7 +27,6 @@ export function CoverPicker({
 
   function onUploadCover(ev) {
     ev.stopPropagation()
-    console.log('upload cover')
   }
 
   function handleSelectAtt(ev, img) {
@@ -39,12 +38,9 @@ export function CoverPicker({
   async function handleSelectFile(ev) {
     ev.stopPropagation()
     ev.preventDefault()
-    console.log('currCover:', currCover)
     const file = ev.target.files[0]
     try {
       const res = await boardService.uploadImageToCloud(file)
-      console.log('res:', res)
-      console.log('attachments:', attachments)
       const id = makeId()
 
       // const updateFile = { ...currCover, color: '#f2e6cc', img: res.secure_url }
@@ -53,7 +49,6 @@ export function CoverPicker({
         ...attachments,
         { id: id, name: file.name, url: res.secure_url },
       ])
-      console.log('task.attachments:', task.attachments)
     } catch (err) {
       console.log('err:', err)
     }

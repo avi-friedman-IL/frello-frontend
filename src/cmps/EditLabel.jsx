@@ -17,7 +17,6 @@ export function EditLabel({
   const staticLabels = boardService.getAllLabels();
   const [deleteLabel, setDeleteLabel] = useState(false);
 
-  console.log(labelToEdit);
 
   useEffect(() => {
     setLabelToEdit(label );

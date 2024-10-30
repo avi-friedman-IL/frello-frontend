@@ -1,7 +1,6 @@
 import { AiFillFilePdf, AiFillFileImage } from "react-icons/ai";
 
 export function AttachmentList({ files = [], onUpdated, setNewFiles }) {
-  console.log('files:', files);
 
   function handleDeleteFile(ev, deleteFile) {
     ev.preventDefault();
