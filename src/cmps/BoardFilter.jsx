@@ -112,8 +112,8 @@ export function BoardFilter() {
                value={filterToEdit.selectMember}
                renderValue={() => `${countMembers} members select`}
                multiple>
-               {members.map(member => (
-                  <MenuItem key={member?._id} value={member?._id}>
+               {members.map((member, idx) => (
+                  <MenuItem key={idx} value={member?._id}>
                      <Checkbox
                         checked={filterToEdit.selectMember?.includes(member?._id)}
                      />
@@ -170,54 +170,4 @@ export function BoardFilter() {
       </section>
    )
 }
-{
-   /* <h3>Sort:</h3>
-<div className="sort-field">
-   
-    <label>
-        <span>Title</span>
-        <input
-            type="radio"
-            name="sortField"
-            value="title"
-            checked={filterToEdit.sortField === 'title'}            
-            onChange={handleChange}
-        />
-    </label>
-    <label>
-        <span>Owner</span>
-        <input
-            type="radio"
-            name="sortField"
-            value="owner"
-            checked={filterToEdit.sortField === 'owner'}                        
-            onChange={handleChange}
-        />
-    </label>
-</div>
-<div className="sort-dir">
-    <label>
-        <span>Asce</span>
-        <input
-            type="radio"
-            name="sortDir"
-            value="1"
-            checked={filterToEdit.sortDir === 1}                        
-            onChange={handleChange}
-        />
-    </label>
-    <label>
-        <span>Desc</span>
-        <input
-            type="radio"
-            name="sortDir"
-            value="-1"
-            onChange={handleChange}
-            checked={filterToEdit.sortDir === -1}                        
-        />
-    </label>
-</div>
-<button 
-    className="btn-clear" 
-    onClick={clearSort}>Clear</button> */
-}
+
