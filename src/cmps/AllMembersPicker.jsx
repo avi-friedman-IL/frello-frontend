@@ -8,7 +8,7 @@ export function AllMembersPicker({
 }) {
   const allUsers = users;
   const availableUsers = allUsers.filter(
-    (user) => !members.some((member) => member._id === user._id)
+    (user) => !members.some((member) => member?._id === user?._id)
   );
 
   function handleAddUserToBoard(ev, user) {
